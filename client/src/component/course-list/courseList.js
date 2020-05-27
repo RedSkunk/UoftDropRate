@@ -98,13 +98,6 @@ class CourseList extends React.Component {
     render() {
         return (
             <div>
-                <div className="top-section">
-                    <p>
-                        { this.props.match.params["ordering"] === "most-dropped" && "Most " } 
-                        { this.props.match.params["ordering"] === "least-dropped" && "Least " }
-                        Dropped Course
-                    </p>
-                </div>
                 <div className="detail-container main-content-pad-top main-content-pad-lr">
                     <div className="row">
                         <div className="col-12">

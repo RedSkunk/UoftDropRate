@@ -5,28 +5,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./app.css";
-import "./component/nav-menu/navMenu.css";
+import ".//navMenu.css";
 
 import CourseDetail from "./component/course-detail/courseDetail";
 import CourseList from "./component/course-list/courseList";
 import CourseSearch from "./component/course-search/courseSearch";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faSearch, faCode, faChalkboardTeacher, faArrowDown, faClock} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSearch, faCode, faChalkboardTeacher, faArrowDown, faClock, faBars, faTimes} from '@fortawesome/free-solid-svg-icons';
 library.add(faHome);
 library.add(faSearch);
 library.add(faCode);
 library.add(faChalkboardTeacher);
 library.add(faArrowDown);
 library.add(faClock);
+library.add(faBars);
+library.add(faTimes);
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-    }
+        this.state = { showMenuMobile: false };
 
-    componentDidUpdate() {
-        console.log(this.props.match);
+        this.clickedShowMenu = this.clickedShowMenu.bind(this);
+        this.clickedCloseMenu = this.clickedCloseMenu.bind(this);
     }
 
     getTitle() {
@@ -48,13 +50,24 @@ class App extends React.Component {
         }
     }
 
+    clickedShowMenu() {
+        this.setState({ showMenuMobile: true });
+    }
+
+    clickedCloseMenu() {
+        this.setState({ showMenuMobile: false });
+    }
+
     render() {
         return (
             
             <div>
-                <div className="menu-container">
+                <div className={"menu-container " + (this.state.showMenuMobile ? "show-menu-mobile":"")}>
                     <div className="top-section menu-section">
                         <p>UofTDropRate</p>
+                        <button className="menu-button" onClick={this.clickedCloseMenu}>
+                            <FontAwesomeIcon icon={['fas', 'times']} />
+                        </button>
                     </div>
                     <div className="menu-button-group menu-section">
                         
@@ -82,7 +95,10 @@ class App extends React.Component {
 
                 <div className="main-content">
                     <div className="top-section">
-                        <button></button><p>{ this.getTitle() }</p>
+                        <button className="menu-button" onClick={this.clickedShowMenu}>
+                            <FontAwesomeIcon icon={['fas', 'bars']} />
+                        </button>
+                        <p>{ this.getTitle() }</p>
                     </div>
                     <Switch>
                         <Route path="/course/:code/:section/:session" component={CourseDetail} />         

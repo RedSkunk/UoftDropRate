@@ -161,9 +161,6 @@ class CourseDetail extends React.Component {
     render() {
         return (
             <div>
-                <div className="top-section">
-                    <p>{ this.state.code + this.state.section }</p>
-                </div>
                 
                 <div className="detail-container main-content-pad-top main-content-pad-lr">
                     <div className="row">
