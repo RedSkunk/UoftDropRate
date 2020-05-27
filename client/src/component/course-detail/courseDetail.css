@@ -1,0 +1,83 @@
+/* .course-code-section {
+    display: flex;
+    align-items: center;
+
+    height: 65px;
+    border-bottom: 2px solid #e0e0e0;
+    /* border-top: 3px solid white; */
+/* } */
+
+.course-code-section p {
+    font-size: 22px;
+    color: #404048;
+
+    margin-top: auto;
+} */
+
+.course-desc-section {
+    min-height: 85px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-top: 8px;
+}
+.course-desc-section .heading {
+    font-size: 10px;
+    font-weight: 500;
+    color: #6c757d;
+}
+.course-desc-section .description {
+    font-size: 12px;
+    color: black;
+}
+
+.course-graph-section {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+
+    height: 325px;
+    
+}
+
+.course-graph-section .main-graph-container { 
+    padding: 16px;
+    height: calc(100% - 32px);   
+}
+
+.main-graph-container {
+    /* height: calc(100% - 32px);   */
+    height: 320px;
+    padding: 16px;
+}
+
+.graph-info-card {
+    margin-bottom: 20px;
+}
+.graph-info-card .graph-info-icon {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 14px 0;
+    /* font-size: 99px; */
+    text-shadow: 0 6px 8px rgba(62, 57, 107, 0.18);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.graph-info-card .graph-info-icon:hover {
+    border-radius: 50%;
+}
+
+.course-graph-section .main-graph-desc {
+    height: 100%;
+    border-left: 1px solid #e0e0e0;
+}
+
+.main-content-pad-lr {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.main-content-pad-top {
+    padding-top: 24px;
+}

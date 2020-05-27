@@ -1,0 +1,127 @@
+.menu-container {
+    position: fixed;
+    height: 100vh;
+    width: 215px;
+    
+    z-index: 1;
+
+    background-color: #2b313d;
+}
+.main-content {
+    margin-left: 215px;
+}
+@media only screen and (max-width: 768px) {
+    .menu-container {
+        display: none;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+  }
+
+/* .menu-container .menu-section {
+    padding-left: 14px;
+} */
+
+.menu-container .top-section {
+    background-color: #343a48;
+
+    height: 65px;
+    padding-left: 14px;
+
+    display: flex;
+    align-items: center;
+}
+.menu-container .top-section p {
+    color: #f9fdfe;
+    font-size: 22px;
+
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+
+    border-top: 3px solid #0ba8fa;
+    margin-top: auto;
+}
+.main-content .top-section {
+    background-color: white;
+
+    height: 65px;
+    padding-left: 14px;
+
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #e0e0e0;
+}
+.main-content .top-section p {
+    color: #343a48;
+    font-size: 22px;
+
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+
+    border-top: 3px solid white;
+    margin-top: auto;
+}
+.main-content .detail-container {
+    background-color: #f2f7fb;
+    margin-right: 0;
+    margin-left: 0;
+
+    min-height: calc(100vh - 65px);
+}
+
+.menu-container .menu-section-title {
+    color: #f1f7ff;
+    font-size: 12px;
+
+    padding-bottom: 8px;
+    padding-left: 14px;
+}
+
+.menu-container .menu-button-group {
+    padding-top: 8px;
+    padding-bottom: 24px;
+}
+
+.menu-container .menu-button-group .menu-button {
+    color: #b7c0cd;
+    font-size: 15px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 14px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.menu-container .menu-button-group .menu-button .menu-button-icon {
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.menu-container .menu-button-group .menu-button:hover {
+    color: #42a5f5;
+}
+
+.menu-container .menu-button-group .menu-button.selected {
+    color: #42a5f5;
+    background-color: #212832;
+
+    border-left: 3px solid #3eb6f5;
+}
+
+.menu-container .bottom-section {
+    position: absolute;
+    bottom: 0;
+}
+
+.menu-container .bottom-section p {
+    font-size: 10px;
+    color: #d2d7df;
+}

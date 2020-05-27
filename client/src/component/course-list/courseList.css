@@ -1,0 +1,23 @@
+.table-top-section {
+    margin-bottom: 30px;
+}
+
+.table-top-section .card-title {
+    color: #6c757d;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.table-top-section .card-subtitle {
+    color: #adb5bd;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.course-code {
+    text-decoration: underline;
+}
+.course-code:hover {
+    color: #4099ff;
+    cursor: pointer;
+}
