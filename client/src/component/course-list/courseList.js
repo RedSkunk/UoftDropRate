@@ -1,5 +1,6 @@
 import React from "react";
 import inputValidate from "../utility/inputValidate";
+import constants from "../utility/constants";
 
 import "./courseList.css";
 
@@ -26,7 +27,10 @@ class CourseList extends React.Component {
     }
 
     async loadData() {
-        const { match: { params } } = this.props;
+        let { match: { params } } = this.props;
+        if (this.props.location.pathname === "/") {
+            params = constants.defaultCourseListParam;
+        }
         if (!inputValidate.isPositiveInteger(params["page"]) || 
                 (params["ordering"] !== "most-dropped" && params["ordering"] !== "least-dropped")) {
             return;
@@ -83,7 +87,10 @@ class CourseList extends React.Component {
 
     clickedGotoPage(page) {
         console.log(page);
-        const { match: { params } } = this.props;
+        let { match: { params } } = this.props;
+        if (this.props.location.pathname === "/") {
+            params = constants.defaultCourseListParam;
+        }
         
         this.props.history.push("/list/" + params["ordering"] + "/" +
             params["session"] + "/" + params["section"] + "/" + page);

@@ -6,7 +6,6 @@ const courseRouter = require('./server/routes/course');
 const organizationRouter = require('./server/routes/organization');
 
 const app = express();
-// app.use(express.static('dist'));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(express.json({ limit: '50mb' }));

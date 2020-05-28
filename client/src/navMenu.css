@@ -134,6 +134,7 @@
 .menu-container .menu-button-group .menu-button .menu-button-icon {
     padding-right: 10px;
     font-size: 20px;
+    width: 24px;
 }
 
 .menu-container .menu-button-group .menu-button:hover {

@@ -12,15 +12,19 @@ import CourseList from "./component/course-list/courseList";
 import CourseSearch from "./component/course-search/courseSearch";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faSearch, faCode, faChalkboardTeacher, faArrowDown, faClock, faBars, faTimes} from '@fortawesome/free-solid-svg-icons';
-library.add(faHome);
+import { faBars, faSortAmountDownAlt, faSortAmountUp, faSearch, faTimes, 
+    faArrowDown, faClock, } from '@fortawesome/free-solid-svg-icons';
+
+// menu
+library.add(faBars);
+library.add(faSortAmountDownAlt);
+library.add(faSortAmountUp);
 library.add(faSearch);
-library.add(faCode);
-library.add(faChalkboardTeacher);
+library.add(faTimes)
+
+// detail
 library.add(faArrowDown);
 library.add(faClock);
-library.add(faBars);
-library.add(faTimes);
 
 class App extends React.Component {
     constructor(props) {
@@ -34,20 +38,24 @@ class App extends React.Component {
     getTitle() {
         console.log(this.props.location);
         let pathname = this.props.location.pathname;
-        if (pathname.includes("/list/most-dropped")) {
+        if (pathname.startsWith("/list/most-dropped")) {
             return "Most Dropped Course";
         }
-        if (pathname.includes("/list/least-dropped")) {
+        if (pathname.startsWith("/list/least-dropped")) {
             return "Least Dropped Course";
         }
-        if (pathname.includes("/list/search")) {
+        if (pathname.startsWith("/list/search")) {
             return "Search";
         }
-        if (pathname.includes("/course")) {
+        if (pathname.startsWith("/course")) {
             let pathList = pathname.split("/");
             // console.log(this.props.match); TODO cant get match here
             return pathList[2] + pathList[3];
         }
+        if (pathname === "/") {
+            return "Most Dropped Course";
+        }
+        return "Page Not Found";
     }
 
     clickedShowMenu() {
@@ -72,17 +80,17 @@ class App extends React.Component {
                     <div className="menu-button-group menu-section">
                         
                         <NavLink to="/list/most-dropped/20199/S/1" activeClassName="selected" className="menu-button" 
-                                isActive={(match, location) => location.pathname.includes("/list/most-dropped/20199/S/")}>
-                            <FontAwesomeIcon className="menu-button-icon" icon={['fas', 'code']} />
+                                isActive={(match, location) => location.pathname.startsWith("/list/most-dropped/") || location.pathname === "/" }>
+                            <FontAwesomeIcon className="menu-button-icon" icon={['fas', 'sort-amount-up']} />
                             Most Dropped
                         </NavLink>
                         <NavLink to="/list/least-dropped/20199/S/1" activeClassName="selected" className="menu-button"
-                                isActive={(match, location) => location.pathname.includes("/list/least-dropped/20199/S/")}>
-                            <FontAwesomeIcon className="menu-button-icon" icon={['fas', 'chalkboard-teacher']} />
+                                isActive={(match, location) => location.pathname.startsWith("/list/least-dropped/")}>
+                            <FontAwesomeIcon className="menu-button-icon" icon={['fas', 'sort-amount-down-alt']} />
                             Least Dropped
                         </NavLink>
                         <NavLink to="/list/search" activeClassName="selected" className="menu-button" 
-                                isActive={(match, location) => location.pathname.includes("/list/search")||location.pathname.includes("/course")}>
+                                isActive={(match, location) => location.pathname.startsWith("/list/search") || location.pathname.includes("/course")}>
                             <FontAwesomeIcon className="menu-button-icon" icon={['fas', 'search']} />
                             Search
                         </NavLink>
@@ -103,7 +111,8 @@ class App extends React.Component {
                     <Switch>
                         <Route path="/course/:code/:section/:session" component={CourseDetail} />         
                         <Route path="/list/search" component={CourseSearch} />                              
-                        <Route path="/list/:ordering/:session/:section/:page" component={CourseList} />   
+                        <Route path="/list/:ordering/:session/:section/:page" component={CourseList} /> 
+                        <Route exact path="/" component={CourseList} />   
                     </Switch>       
                 </div>
             </div>
