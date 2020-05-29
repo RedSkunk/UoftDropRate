@@ -1,11 +1,14 @@
-import requests
-
+import urllib3
+import json
 from datetime import datetime
 from datetime import timedelta
 
-server_baseurl = "http://localhost:5000/api"
+http = urllib3.PoolManager()
+server_baseurl = "http://node-express-env.eba-ztwfmcgs.us-east-2.elasticbeanstalk.com/api"
+# server_baseurl = "http://localhost:5000/api"
 artsci_tt_baseurl = "https://timetable.iit.artsci.utoronto.ca/api"
 secret_id = "aw12kjebf23429jae0aklr29304rjq9t7iro345"
+
 # session is either 
 # "year"+"5" (for summmer session) or 
 # "year"+"9" (for normal year session)
@@ -40,8 +43,8 @@ def get_current_section():
 
 def get_orgs():
     try:
-        request = requests.get(url = artsci_tt_baseurl + "/orgs")
-        response_json = request.json() 
+        request = http.request("GET", artsci_tt_baseurl + "/orgs")
+        response_json = json.loads(request.data.decode('utf-8'))
 
         list_of_orgs = []
         for org in response_json["orgs"]:
@@ -56,8 +59,8 @@ def get_org_courses(org, session, section):
     print("Processing courses for " + org + "(" + session + "" + section + ")")
     try:
         # https://timetable.iit.artsci.utoronto.ca/api/20205/courses?org=CSC
-        request = requests.get(url = artsci_tt_baseurl + "/" + session + "/courses?org=" + org + "&section=" + section)
-        response_json = request.json() 
+        request = http.request("GET", artsci_tt_baseurl + "/" + session + "/courses?org=" + org + "&section=" + section)
+        response_json = json.loads(request.data.decode('utf-8'))
 
         list_of_courses = []
         for course in response_json:
@@ -101,9 +104,10 @@ def get_org_courses(org, session, section):
 
 def send_org_data(org_data):
     try:
-        request = requests.post(url = server_baseurl + "/organization", \
-            json = {"secretId": secret_id, "data": org_data})
-        response_json = request.json() 
+        request = http.request("POST", server_baseurl + "/organization", \
+            body=json.dumps({"secretId": secret_id, "data": org_data}).encode('utf-8'), \
+            headers={'Content-Type': 'application/json'})
+        response_json = json.loads(request.data.decode('utf-8'))
 
         print(response_json)
         return True
@@ -114,9 +118,10 @@ def send_org_data(org_data):
 
 def send_course_data(course_data):
     try:
-        request = requests.post(url = server_baseurl + "/course/batch_processing", \
-            json = {"secretId": secret_id, "data": course_data})
-        response_json = request.json() 
+        request = http.request("POST", server_baseurl + "/course/batch_processing", \
+            body=json.dumps({"secretId": secret_id, "data": course_data}).encode('utf-8'), \
+            headers={'Content-Type': 'application/json'})
+        response_json = json.loads(request.data.decode('utf-8'))
 
         print(response_json)
         return True
