@@ -1,28 +1,29 @@
 # Introduction
 
-## What
+### What
 
 This project is intended to track the drop rate of classes at University of Toronto St. George Campus.
 
 User can access the list of most and least dropped classes, as well as the historical enrolment of a class over the course of a semester.
 
-## Why
+### Why
 
 Difficulty of a class can be hard to gauge. One of the biggest problem facing UofT students is that there are no readily available data of how hard a class is, except by word of mouth.
 
 This application attempts to compile the list of most dropped course by tracking daily enrolment through the official website.
 
-![](./screenshots/1.png)
+<img src="./screenshots/1.png" width="60%">
+![](./screenshots/1.png){:height="50%" width="50%"}
 ![](./screenshots/2.png)
 
 # Technology
 
-## Frontend
+### Frontend
 
 - React
 - JavaScript
 
-## Backend 
+### Backend 
 
 - NodeJs 
 - Express
