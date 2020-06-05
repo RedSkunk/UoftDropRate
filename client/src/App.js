@@ -106,7 +106,21 @@ class App extends React.Component {
                         <button className="menu-button" onClick={this.clickedShowMenu}>
                             <FontAwesomeIcon icon={['fas', 'bars']} />
                         </button>
+                        
                         <p>{ this.getTitle() }</p>
+                    
+                        <Route path="/course/:code/:section/:session" component={() => (
+                            <div className="row">
+                                <label className="col-4 col-form-label">Session:</label>
+                                <div className="col-8">
+                                    <select name="session" className="form-control">
+                                        <option value="">20199S</option>                                                   
+                                    </select>
+                                </div>
+                            </div>
+                        )} /> 
+                        
+                                
                     </div>
                     <Switch>
                         <Route path="/course/:code/:section/:session" component={CourseDetail} />         

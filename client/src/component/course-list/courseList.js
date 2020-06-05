@@ -111,8 +111,22 @@ class CourseList extends React.Component {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="table-top-section">
-                                        <p className="card-title">Drop Rate Overview</p>
-                                        <p className="card-subtitle">Only includes courses with more than 30 seats</p>
+                                        <div className="row">
+                                            <div className="col-7">
+                                                <p className="card-title">Drop Rate Overview</p>
+                                                <p className="card-subtitle">Only includes courses with more than 30 seats</p>
+                                            </div>
+                                            <div className="col-5">
+                                                <div className="form-group row">
+                                                    <label className="col-sm-4 col-form-label">Session:</label>
+                                                    <div className="col-sm-8">
+                                                        <select name="organization" className="form-control">
+                                                            <option value="">20199S</option>                                                   
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="table-responsive">
                                         <table className="table table-hover">

@@ -7,7 +7,7 @@ http = urllib3.PoolManager()
 server_baseurl = "http://node-express-env.eba-ztwfmcgs.us-east-2.elasticbeanstalk.com/api"
 # server_baseurl = "http://localhost:5000/api"
 artsci_tt_baseurl = "https://timetable.iit.artsci.utoronto.ca/api"
-secret_id = "aw12kjebf23429jae0aklr29304rjq9t7iro345"
+secret_id = ""
 
 # session is either 
 # "year"+"5" (for summmer session) or 
