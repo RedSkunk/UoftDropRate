@@ -12,9 +12,9 @@ Difficulty of a class can be hard to gauge. One of the biggest problem facing Uo
 
 This application attempts to compile the list of most dropped course by tracking daily enrolment through the official website.
 
-<img src="./screenshots/1.png" width="60%">
-![](./screenshots/1.png){:height="50%" width="50%"}
-![](./screenshots/2.png)
+
+<img src="./screenshots/1.png" width="70%">
+<img src="./screenshots/2.png" width="70%">
 
 # Technology
 
