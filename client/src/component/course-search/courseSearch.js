@@ -1,12 +1,13 @@
 import React from "react";
 import queryString from 'query-string';
 
+import Pagination from "../pagination/pagination";
 import inputValidate from "../utility/inputValidate";
 
 class CourseSearch extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { courses: [], currentPage: 1, maxPage: 1, currentPagination: [1], 
+        this.state = { courses: [], currentPage: 1, numRecords: 0, 
             organizations: [{name:"CSC"}], 
             code: "", organization: "", session: "20199", section: "S" };
 
@@ -56,25 +57,21 @@ class CourseSearch extends React.Component {
             "&department="+organization+"&session="+session+"&section="+section+
             "&page="+page);
         let responseJson = await response.json();
+        console.log(responseJson);
         if (responseJson["status"] == null || responseJson["status"] !== "success") {
+            this.setState({
+                courses: [], currentPage: 1, numRecords: 0
+            });
             return;
         }
-        console.log(responseJson);
 
         let numRecords = parseInt(responseJson["numRecords"]);
-        let maxPage = Math.ceil(numRecords/10);
-        let pageInt = parseInt(page);
-        let paginationList = this.getDisplayPagination(pageInt, maxPage);
-        if (paginationList === null) {
-            paginationList = this.getDisplayPagination(1, numRecords);
-        }
-        console.log(paginationList);
+        let currentPage = parseInt(page);
 
         this.setState({
             courses: responseJson["courses"],
-            currentPage: pageInt,
-            maxPage: maxPage,
-            currentPagination: paginationList
+            currentPage: currentPage,
+            numRecords: numRecords
         });
     }
 
@@ -224,39 +221,8 @@ class CourseSearch extends React.Component {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className="table-pagination">
-                                        <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
-                                                <li className={"page-item " + (this.state.currentPage === 1 ? "disabled":"")}>
-                                                    <a className="page-link" href="#" aria-label="Previous"
-                                                        onClick={(e) => {e.preventDefault();this.clickedGotoPage(this.state.currentPage-1)}}>
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                        <span className="sr-only">Previous</span>
-                                                    </a>
-                                                </li>
-                                                {
-                                                    this.state.currentPagination.map((value) => {
-                                                        return (
-                                                            <li key={value} className={"page-item " + 
-                                                                (value === this.state.currentPage ? "active":"")}>
-                                                                <a className="page-link" href="#" 
-                                                                        onClick={(e) => {e.preventDefault();this.clickedGotoPage(value)}}>
-                                                                    {value}
-                                                                </a>
-                                                            </li>
-                                                        );
-                                                    })
-                                                }
-                                                <li className={"page-item " + (this.state.currentPage === this.state.maxPage ? "disabled":"")}>
-                                                    <a className="page-link" href="#" aria-label="Next" 
-                                                            onClick={(e) => {e.preventDefault();this.clickedGotoPage(this.state.currentPage+1)}}>
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                        <span className="sr-only">Next</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>            
+                                    <Pagination numRecords={this.state.numRecords} recordsPerPage={10} 
+                                        currentPage={this.state.currentPage} clickedGotoPage={this.clickedGotoPage} />         
                                 </div>
 
                             </div>

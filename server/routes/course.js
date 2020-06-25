@@ -40,13 +40,13 @@ router.get('/list/search', async function(req, res, next) {
     }
     page = parseInt(page);
 
-    let numRecords = await courseService.getCountCoursesWithDropRateCount(code, orgName, 
+    let numRecords = await courseService.getCoursesWithDropRateCount(code, orgName, 
         session, section, minEnrol);
-    // if ( (page*10 - numRecords) >= 10) {
-    //     res.status(200).send(responseFormatter.errorIncorrectParam(response, 
-    //         "Non existant page. Page exceeds maximum amount of record."));
-    //     return;
-    // }
+    if ( (page*10 - numRecords) >= 10) {
+        res.status(200).send(responseFormatter.errorIncorrectParam(response, 
+            "Non existant page. Page exceeds maximum amount of record."));
+        return;
+    }
 
     let courses = null;
     if (order === "ASC") {

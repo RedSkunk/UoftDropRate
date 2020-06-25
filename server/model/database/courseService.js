@@ -140,7 +140,7 @@ exports.getCoursesWithDropRateAsc = async function(code, orgName, session, secti
         return null;
     }
 }
-exports.getCountCoursesWithDropRateCount = async function(code, orgName, session, section, minEnrol) {
+exports.getCoursesWithDropRateCount = async function(code, orgName, session, section, minEnrol) {
     try {
         const res = await db.query('SELECT COUNT(*) FROM ( ' +
             'SELECT *, t.final_enrolment/t.initial_enrolment as percent_remaining FROM ( ' + 
